@@ -1,9 +1,5 @@
 # 🃏 Three Card Poker (Client & Server)
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
-![Java](https://img.shields.io/badge/language-Java-orange.svg)
-
 A full-stack, networked digital implementation of the classic casino table game, **Three Card Poker**. This project features a robust client-server architecture, allowing multiple users to connect and play concurrently using a rich JavaFX graphical interface.
 
 ---
