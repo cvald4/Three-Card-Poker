@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="StatusController"
+            prefWidth="1000" prefHeight="700">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+            <Label text="Server Logs" style="-fx-font-size:18px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="Port:"/>
+            <Label fx:id="statusPortLabel" text="(not running)"/>
+
+            <Button fx:id="stopBtn"
+                    text="Stop Server"
+                    onAction="#onStopServer"
+                    disable="true"/>
+
+            <Button text="Back to Home"
+                    onAction="#showHomeScene"/>
+        </HBox>
+    </top>
+
+    <center>
+        <GridPane hgap="20" vgap="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Server Log"/>
+                <ListView fx:id="logList" prefHeight="500" prefWidth="600"/>
+            </VBox>
+
+            <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Server Summary"/>
+
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Clients connected:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="clientCountLabel" text="0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Games played:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="gamesPlayedLabel" text="0" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Last game result:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="lastResultLabel" text="n/a" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <Separator/>
+
+                <Label text="Controls"/>
+                <VBox spacing="8">
+                    <Button text="Clear Log" onAction="#onClearLog"/>
+                </VBox>
+            </VBox>
+
+        </GridPane>
+    </center>
+
+</BorderPane>

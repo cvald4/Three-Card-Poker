@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml" fx:controller="GameController">
+
+    <fx:define>
+        <ToggleGroup fx:id="pairGroup"/>
+        <ToggleGroup fx:id="anteGroup"/>
+    </fx:define>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" styleClass="topbar">
+            <MenuButton text="Options" styleClass="menu-button">
+                <items>
+                    <MenuItem text="Exit" onAction="#exit"/>
+                    <MenuItem text="Fresh Start" onAction="#freshStart"/>
+                    <MenuItem text="New Look" onAction="#newLook"/>
+                </items>
+            </MenuButton>
+        </HBox>
+    </top>
+
+    <center>
+        <GridPane hgap="30" vgap="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <VBox spacing="20" GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="TOP_CENTER">
+
+                <VBox spacing="10" alignment="CENTER">
+                    <Label text="DEALER HAND" styleClass="section-title-small"/>
+                    <HBox fx:id="dealerCards" spacing="15" alignment="CENTER">
+                        <Label fx:id="d1" styleClass="card-text" text="🂠"/>
+                        <Label fx:id="d2" styleClass="card-text" text="🂠"/>
+                        <Label fx:id="d3" styleClass="card-text" text="🂠"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="10" alignment="CENTER">
+                    <Label text="YOUR HAND" styleClass="section-title-small"/>
+                    <HBox fx:id="playerCards" spacing="15" alignment="CENTER">
+                        <Label fx:id="p1" styleClass="card-text" text="?"/>
+                        <Label fx:id="p2" styleClass="card-text" text="?"/>
+                        <Label fx:id="p3" styleClass="card-text" text="?"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: rgba(0,0,0,0.2); -fx-background-radius: 15;">
+                    
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="PAIR PLUS" style="-fx-font-weight:bold; -fx-min-width: 80; -fx-text-fill: white;"/>
+                        <HBox spacing="5">
+                            <ToggleButton fx:id="pair0Btn" text="\$0"  onAction="#onPair0" toggleGroup="$pairGroup" selected="true"/>
+                            <ToggleButton fx:id="pair5Btn" text="\$5"  onAction="#onPair5" toggleGroup="$pairGroup"/>
+                            <ToggleButton fx:id="pair10Btn" text="\$10" onAction="#onPair10" toggleGroup="$pairGroup"/>
+                            <ToggleButton fx:id="pair15Btn" text="\$15" onAction="#onPair15" toggleGroup="$pairGroup"/>
+                            <ToggleButton fx:id="pair20Btn" text="\$20" onAction="#onPair20" toggleGroup="$pairGroup"/>
+                        </HBox>
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="ANTE" style="-fx-font-weight:bold; -fx-min-width: 80; -fx-text-fill: white;"/>
+                        <HBox spacing="5">
+                            <ToggleButton fx:id="ante5Btn" text="\$5"  onAction="#onAnte5" toggleGroup="$anteGroup" selected="true"/>
+                            <ToggleButton fx:id="ante10Btn" text="\$10" onAction="#onAnte10" toggleGroup="$anteGroup"/>
+                            <ToggleButton fx:id="ante20Btn" text="\$20" onAction="#onAnte20" toggleGroup="$anteGroup"/>
+                            <ToggleButton fx:id="ante25Btn" text="\$25" onAction="#onAnte25" toggleGroup="$anteGroup"/>
+                        </HBox>
+                    </HBox>
+
+                    <HBox spacing="20" alignment="CENTER">
+                        <Label text="Current Play Wager:"/>
+                        <TextField fx:id="playField" prefWidth="80" editable="false" style="-fx-alignment: CENTER;"/>
+                    </HBox>
+                </VBox>
+
+                <HBox spacing="10" alignment="CENTER">
+                    <Label text="TOTAL WINNINGS" styleClass="section-title"/>
+                    <Label fx:id="winnings" text="\$0" styleClass="winnings"/>
+                </HBox>
+
+                <HBox spacing="15" alignment="CENTER">
+                    <Button text="CLEAR BETS" fx:id="clearBtn" onAction="#clearBets"/>
+                    <Button text="DEAL HAND"  fx:id="dealBtn"  onAction="#deal" style="-fx-base: #228B22;"/>
+                    <Button text="PLAY"       fx:id="playBtn"  onAction="#play" disable="true" style="-fx-base: #4682B4;"/>
+                    <Button text="FOLD"       fx:id="foldBtn"  onAction="#fold" disable="true" style="-fx-base: #CD5C5C;"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="320">
+
+                <Label text="ANTE BONUS PAYS" styleClass="section-title-small"/>
+                <VBox spacing="5" styleClass="paytable">
+                    <Label text="STRAIGHT FLUSH 5:1"/>
+                    <Label text="THREE OF A KIND 4:1"/>
+                    <Label text="STRAIGHT 1:1"/>
+                </VBox>
+
+                <Label text="PAIR PLUS PAYS" styleClass="section-title-small"/>
+                <VBox spacing="5" styleClass="paytable">
+                    <Label text="STRAIGHT FLUSH 40:1"/>
+                    <Label text="THREE OF A KIND 30:1"/>
+                    <Label text="STRAIGHT 6:1"/>
+                    <Label text="FLUSH 3:1"/>
+                    <Label text="ONE PAIR 1:1"/>
+                </VBox>
+
+                <Label text="GAME LOG" styleClass="section-title-small"/>
+                <ListView fx:id="serverMessages" prefHeight="250" style="-fx-background-radius: 10;"/>
+            </VBox>
+        </GridPane>
+    </center>
+</BorderPane>
